@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     font-family: "Segoe UI", sans-serif;
@@ -6,19 +7,67 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #00c6ff, #0072ff, #7f00ff);
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background: linear-gradient(
+        120deg,
+        #0f2027,
+        #203a43,
+        #2c5364,
+        #7b2ff7,
+        #f107a3
+    );
+    background-size: 300% 300%;
+    animation: movieGradient 14s ease infinite;
+
+    overflow: hidden;
+}
+
+@keyframes movieGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    top: -120px;
+    left: -120px;
+    animation: floatLight 12s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+@keyframes floatLight {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(350px, 350px);
+    }
 }
 
 .container {
+    position: relative;
+    z-index: 1;
+
     background: rgba(255, 255, 255, 0.95);
     width: 90%;
     max-width: 600px;
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     text-align: center;
 }
 
@@ -38,12 +87,12 @@ input {
     padding: 12px;
     font-size: 16px;
     border-radius: 8px;
-    border: 2px solid #0072ff;
+    border: 2px solid #7b2ff7;
     outline: none;
 }
 
 input:focus {
-    border-color: #7f00ff;
+    border-color: #f107a3;
 }
 
 button {
@@ -54,12 +103,12 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 .error {
@@ -87,5 +136,5 @@ button:hover {
 #poster img {
     max-width: 100%;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
